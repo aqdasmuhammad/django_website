@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Us
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid my-3">
+    <img src="/static/img/contact-01.jpg" class="d-block w-100" alt="...">
+</div>
+<div class="container">
+    <p class="text-center my-3" style="color:DarkMagenta">We would love to hear from our members and community. Feel free to suggest us anything you like we are very open to them or if you have any query regarding IET we would love to answer them.</p>
+    <form method="post" action="/contact">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Type your full name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"
+                placeholder="Type your message here"></textarea>
+        </div>
+        <button class="btn btn-secondary" type="submit">Submit</button>
+    </form>
+    <h2 class="text-center" style="color:Indigo"><b>Our Office</b></h2>
+    <p class="text-center" style="color:DarkMagenta">Address: Room # .., Ground Floor, Department of Electrical Engineering, University of Engineering & Technology, G.T. Road, Lahore</p>
+    <p class="text-center" style="color:DarkMagenta">Call us at: +921234567890</p>
+
+</div>
+{% endblock body %}

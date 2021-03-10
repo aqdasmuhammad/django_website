@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Events
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid my-3">
+    <img src="/static/img/event-01.jpg" class="d-block w-100" alt="...">
+</div>
+
+<div class="container">
+    <p class="text-center my-3" style="color:DarkMagenta">Fill out the form to request an event.</p>
+    <form method="post" action="/events">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Type your full name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Memebrship Type</label>
+            <input type="text" class="form-control" id="mtype" name="mtype" placeholder="General Member etc">
+        </div>
+
+        {% comment %} <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Team Name</label>
+            <input type="text" class="form-control" id="tname" name="tname" placeholder="Type your team name.">
+        </div> {% endcomment %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Event Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Name of your event">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Event Date</label>
+            <input type="text" class="form-control" id="ed" name="ed" placeholder="Date of your event">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Event Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"
+                placeholder="A little detail about your event."></textarea>
+        </div>
+        <button class="btn btn-bd-primary" style="color:puple" type="submit">Submit</button>
+    </form>
+
+</div>
+
+{% endblock body %}

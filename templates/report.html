@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Report
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid my-3">
+    <img src="/static/img/report-01.jpg" class="d-block w-100" alt="...">
+</div>
+
+<div class="container">
+    <p class="text-center my-3" style="color:DarkMagenta">Fill out the form to submit your report.</p>
+    <form method="post" action="/report">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Type your full name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Post</label>
+            <input type="text" class="form-control" id="post" name="post" placeholder="Head or Co Head">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Team Name</label>
+            <input type="text" class="form-control" id="tname" name="tname" placeholder="Type your team name.">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Reporting Month</label>
+            <input type="text" class="form-control" id="mon" name="mon" placeholder="Write the name of the reporting month.">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Report</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="report" rows="5"
+                placeholder="Write briefly about your monthly activities."></textarea>
+        </div>
+        <button class="btn btn-bd-primary" style="color:puple" type="submit">Submit</button>
+    </form>
+
+</div>
+
+{% endblock body %}

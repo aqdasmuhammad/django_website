@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Complaint
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid my-3">
+    <img src="/static/img/complaint-01.jpg" class="d-block w-100" alt="...">
+</div>
+
+<div class="container">
+    <p class="text-center my-3" style="color:DarkMagenta">Fill out the form to file your complaint.</p>
+    <form method="post" action="/complaint">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Type your full name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Memebrship Type</label>
+            <input type="text" class="form-control" id="mtype" name="mtype" placeholder="General Member etc">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Team Name</label>
+            <input type="text" class="form-control" id="tname" name="tname" placeholder="Type your team name.">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Complaint</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="complaint" rows="3"
+                placeholder="Write your complaint."></textarea>
+        </div>
+        <button class="btn btn-secondary" style="color:puple" type="submit">Submit</button>
+    </form>
+
+</div>
+
+{% endblock body %}

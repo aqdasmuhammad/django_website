@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid my-3">
+    <img src="/static/img/login-01.jpg" class="d-block w-100" alt="...">
+</div>
+<div class="container">
+    <p class="text-center my-3" style="color:DarkMagenta">Login by entering your credentials.</p>
+    <form method="post" action="login">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Type your username">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Type your password">
+        </div>
+        <button class="btn btn-secondary" style="color:puple" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock body %}

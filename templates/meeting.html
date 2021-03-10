@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Meeting
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid my-3">
+    <img src="/static/img/meeting-01.jpg" class="d-block w-100" alt="...">
+</div>
+
+<div class="container">
+    <p class="text-center my-3" style="color:DarkMagenta">Fill out the form to request your meeting.</p>
+    <form method="post" action="/meeting">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Type your full name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Post</label>
+            <input type="text" class="form-control" id="post" name="post" placeholder="Head or Co Head">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Team Name</label>
+            <input type="text" class="form-control" id="tname" name="tname" placeholder="Type your team name.">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Audience</label>
+            <input type="text" class="form-control" id="aud" name="aud" placeholder="General Body or Executive Body etc.">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Time and Date</label>
+            <input type="text" class="form-control" id="tnd" name="tnd" placeholder="Time and date of proposed meeting.">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Meeting Agenda</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="agenda" rows="3"
+                placeholder="Describe your meeting agenda here."></textarea>
+        </div>
+        <button class="btn btn-bd-primary" style="color:puple" type="submit">Submit</button>
+    </form>
+
+</div>
+
+{% endblock body %}
