@@ -6,20 +6,20 @@ Register
 
 {% block body %}
 <div class="container-fluid my-3">
-    <img src="/static/img/team-01.jpg" class="d-block w-100" alt="...">
+    <img src="/static/img/register-01.jpg" class="d-block w-100" alt="...">
 </div>
 <div class="container">
     <p class="text-center my-3" style="color:DarkMagenta">Register yourself here.</p>
     <form method="post" action="register">
     {% csrf_token %}
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <label for="exampleFormControlInput1" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Type your username">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Type your password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Type your password (Atleast 8 characters and non-numeric)">
         </div>
 
         <div class="mb-3">
