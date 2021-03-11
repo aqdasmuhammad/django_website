@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from datetime import datetime
 from home.models import Messages , eventregister, complaintfile, meetingp, mreport
-from home.permissions import corebody, executivebody, generalbody
+from home.permissions import corebody, executivebody, generalbody, guest
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
@@ -47,10 +47,20 @@ def register(request):
         password = request.POST.get('password')
         password1 = request.POST.get('password1')
 
-        user = User.objects.create_user(username=username, password=password)
-        user.save()
-        print('User Created')
-        return redirect('/')
+        if password==password1 :
+            if User.objects.filter(username=username).exists():
+                messages.info(request,'Username already exists.')
+                return redirect('register')
+            
+            else:
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                guest.append(username)
+                messages.info(request,'User has been created.')
+                return redirect('/')
+        else:
+            messages.info(request,'Password didnt match')
+            return redirect('register')
     else:
         return render(request, 'register.html')
 
@@ -63,7 +73,10 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            return redirect("/")
+            if request.user.username in corebody:
+                return redirect("/admin")
+            else:
+                return redirect('/')
         
         else:
             messages.info(request, 'Invalid Credentials. Contact the core body if you forgot your credentials.')
@@ -77,17 +90,22 @@ def logout(request):
     return redirect("/")
 
 def events(request):
-    if request.method == "POST":
-        name=request.POST.get('name')
-        mtype=request.POST.get('mtype')
-        # tname=request.POST.get('tname')
-        title=request.POST.get('title')
-        ed=request.POST.get('ed')
-        description=request.POST.get('description')
-        event=eventregister(name=name, mtype=mtype, title=title, ed=ed, description=description)
-        event.save()
-        messages.info(request,'Your request has been submitted')
-    return render(request, 'events.html')
+    if request.user.username in generalbody or request.user.username in executivebody or request.user.username in corebody:
+        if request.method == "POST":
+            name=request.POST.get('name')
+            mtype=request.POST.get('mtype')
+            # tname=request.POST.get('tname')
+            title=request.POST.get('title')
+            ed=request.POST.get('ed')
+            description=request.POST.get('description')
+            event=eventregister(name=name, mtype=mtype, title=title, ed=ed, description=description)
+            event.save()
+            messages.info(request,'Your request has been submitted')
+        return render(request, 'events.html')
+    else:
+        messages.info(request, 'Access Denied')
+        return redirect('/')
+
 
 def complaint(request):
     if request.method == "POST":
