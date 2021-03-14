@@ -9,23 +9,17 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 # Create your views here.
 
 def index(request):
-    context= {
-        'variable':"this is sent"
-    }
     return render(request, 'index.html')
     #return HttpResponse("This is HomePage")
 
 def about(request):
-    context= {
-        'variable':"this is sent"
-    }
     return render(request, 'about.html')
     #return HttpResponse("This is AboutPage")
 
 def team(request):
-    context= {
-        'variable':"this is sent"
-    }
+    # context= {
+    #     'variable':"this is sent"
+    # }
     #return render(request, 'events.html', context)
     return render(request, 'team.html')
 
